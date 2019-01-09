@@ -16,23 +16,32 @@ The DevLog of Testlet
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
-jackL -- 2019-01-08 01:52
+jackL -- 2019-01-08 13:52
 --------------------------------------------------------------
 - Created devlog.
 - Added database schema, API cards
 ==============================================================
-firstL -- 2018-00-00 00:00
+jasonT -- 2019-01-08 14:02
 --------------------------------------------------------------
-- One thing
-- Another thing
+- Added TTS connection in the APIS
+- Corrected OAUTH to OAUTH2
 ==============================================================
-firstL -- 2018-00-00 00:00
+mohtasimH -- 2019-01-08 14:03
 --------------------------------------------------------------
-- One thing
-- Another thing
+- Added flask folders, app.py, and necesary import statements
 ==============================================================
-firstL -- 2018-00-00 00:00
+mohtasimH -- 2019-01-09 02:30
 --------------------------------------------------------------
-- One thing
-- Another thing
+- design doc: Added reasoning for why we chose our frontend framework (bootstrap)
+- design doc: Added clarification to roles
+- design doc: Added to the to-do list
+
+==============================================================
+jasonT -- 2019-01-09 05:30
+--------------------------------------------------------------
+- Clarified that OAuth2 is a stretch goal and what it would be used for
+- fixed typos in component map
+- added a connection b/w display set and going back to home on site map
+- clarified what folders do in db
+- more detailed timeline including FLASK, JS, and CSS
 ==============================================================
