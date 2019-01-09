@@ -37,8 +37,11 @@ mohtasimH -- 2019-01-09 02:30
 - design doc: Added to the to-do list
 
 ==============================================================
-firstL -- 2019-00-00 00:00
+jasonT -- 2019-01-09 05:30
 --------------------------------------------------------------
-- One thing
-- Another thing
+- Clarified that OAuth2 is a stretch goal and what it would be used for
+- fixed typos in component map
+- added a connection b/w display set and going back to home on site map
+- clarified what folders do in db
+- more detailed timeline including FLASK, JS, and CSS
 ==============================================================
