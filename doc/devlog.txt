@@ -26,10 +26,16 @@ jasonT -- 2019-01-08 14:02
 - Added TTS connection in the APIS
 - Corrected OAUTH to OAUTH2
 ==============================================================
-firstL -- 2019-00-00 00:00
+mohtasimH -- 2019-01-08 14:03
 --------------------------------------------------------------
-- One thing
-- Another thing
+- Added flask folders, app.py, and necesary import statements
+==============================================================
+mohtasimH -- 2019-01-09 02:30
+--------------------------------------------------------------
+- design doc: Added reasoning for why we chose our frontend framework (bootstrap)
+- design doc: Added clarification to roles
+- design doc: Added to the to-do list
+
 ==============================================================
 firstL -- 2019-00-00 00:00
 --------------------------------------------------------------
