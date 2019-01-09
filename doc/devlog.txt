@@ -45,3 +45,8 @@ jasonT -- 2019-01-09 05:30
 - clarified what folders do in db
 - more detailed timeline including FLASK, JS, and CSS
 ==============================================================
+jackL -- 2019-01-09 14:02
+--------------------------------------------------------------
+- created database and relational tables.
+- added database processing python file in util 
+==============================================================
