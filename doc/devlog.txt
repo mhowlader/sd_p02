@@ -50,3 +50,10 @@ jackL -- 2019-01-09 14:02
 - created database and relational tables.
 - added database processing python file in util 
 ==============================================================
+
+jasonT -- 2019-01-09 14:03
+--------------------------------------------------------------
+- added root route to app.py
+- created base.html
+- made a login template test page
+==============================================================
