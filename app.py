@@ -13,7 +13,7 @@ app.secret_key = os.urandom(32) #key for session
 def hello_world():
     if "logged_in" in session:
         return render_template("home.html")
-    return render_template("landing.html", logged_in=False, recipes=api.get_recipes(""))
+    return render_template("landing.html")
 
 @app.route("/register")
 def register():
