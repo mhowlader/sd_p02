@@ -1,0 +1,29 @@
+#encapsule {
+    padding-top: 20px;
+}
+table {
+    border: none;
+}
+footer {
+    padding-left: 30px;
+    padding-bottom: 20px
+}
+#rightside {
+    text-align: left
+}
+#leftside {
+    text-align: right
+}
+#attribution {
+    color: #279640
+}
+button {
+    color: #000000;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    padding-bottom: 10px;
+}
