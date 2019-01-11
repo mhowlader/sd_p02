@@ -13,7 +13,8 @@ Our project utilizes various APIs, so the user needs a json file with the API ke
 
 
 FILE_NAME: 
-MSAzureTTS API
+Oxford Dictionaries API
+
 CONTENTS:
 ```
 APPID:xxxxxxxxxx
@@ -101,7 +102,7 @@ pip install -r requirements.txt
 6b. fill the `<api_name>` file with your corresponding api keys in the following format (the api keys i filled out are made up):
 
 FILE_NAME: 
-MSAzureTTS API
+Oxford Dictionaries API
 CONTENTS:
 ```
 APPID:xxxxxxxxxx
