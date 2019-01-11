@@ -1,4 +1,4 @@
-# team azrael <img src="https://d1lss44hh2trtw.cloudfront.net/assets/article/2015/07/06/Azrael_Returns_feature.jpg" height="40">
+# team azrael <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Evelyn_De_Morgan_-_Angel_of_Death.jpg/220px-Evelyn_De_Morgan_-_Angel_of_Death.jpg" height="100">
 Mohtasim Howlader, Jack Lu, Jason Tung
 
 **[Devlog](https://github.com/mhowlader/sd_p02/blob/master/doc/devlog.txt)**
@@ -9,11 +9,15 @@ Mohtasim Howlader, Jack Lu, Jason Tung
 Teslet is a Quizlet inspired project which revolves around duplicating Quizlet’s core functionality: logging in, creating, saving, and viewing sets. Team azrael will try to also implement various ways to expedite the process of set creation and reviewing sets, most notably autofill definitions and enabled pronunciation on terms/definitions. Using javascript, we will try to update a container in while reviewing sets to imitate flipping an index card.
 
 ### How To Procure Your Own API Keys:
-Our project utilizes various APIs, so the user needs a json file with the API keys formatted as such (the skeleton is provided under `/keys/<api_name>):
+Our project utilizes various APIs, so the user needs a json file with the API keys formatted as such (the skeleton is provided under `/keys/<api_name>`):
 
+
+FILE_NAME: 
+MSAzureTTS API
+CONTENTS:
 ```
-FILE: MSAzureTTS API
-CONTENTS:xxxxxxxxxx
+APPID:xxxxxxxxxx
+KEY:xxxxxx
 ```
 This will be elaborated upon in the instructions. Just fetch your API keys for now.
 
@@ -22,14 +26,9 @@ All of the APIs we used are hyperlinked in the table below with a brief descript
 
 api | description
 --- | ---
-[calendar index](https://www.calendarindex.com/)  | Gives dates of holidays and observances
-[sunrise-sunset](https://sunrise-sunset.org/api) | Provides time for sunrise, high noon, and sunset
-[darksky](https://darksky.net/dev) | To get the past, current, and future weather at a location
-[ipapi](https://ipapi.co/)  | To get the information about location based on ip address
-[horoscope-api](https://github.com/tapaswenipathak/Horoscope-API) | To get the daily, weekly, monthly horoscope
-[newsapi](https://newsapi.org/) | To get the news or anything
-[poemist](https://poemist.github.io/poemist-apidoc/#misc-services) | Get a random poem
-[nasa-api](https://api.nasa.gov/) | Used to fetch a picture of location based on long/lat
+[MSAzureTTS API](https://azure.microsoft.com/en-us/services/cognitive-services/text-to-speech/)  | pronounce terms/definitions from sets 
+[Oxford Dictionaries API](https://developer.oxforddictionaries.com/) | generate suggested definitions for terms when creating sets
+[OpenTriviaDB API](https://opentdb.com/) | generate trivia questions to make sets automatically (no API key)
 
 ### Dependencies: 
 Our dependencies, as listed in requirements.txt, are as follows:
@@ -43,7 +42,9 @@ Jinja2 | 2.10 | Flask |  templating language
 MarkupSafe | 1.1.0 | Flask |  unused
 Werkzeug | 0.14.1 | Flask |  unused
 json | n/a | py3.7.1-stdlib |  converts json strings into python dictionaries and vice-versa
-os | n/a | py3.7.1-stdlib | take care of file paths
+os | n/a | py3.7.1-stdlib | take care of 
+
+paths
 csv | n/a | py3.7.1-stdlib | parsing csv files
 sqlite3 | n/a | py3.7.1-stdlib | our db
 urllib | n/a | py3.7.1-stdlib |  fetches json data from urls
@@ -98,9 +99,13 @@ pip install -r requirements.txt
 6a. edit/make files `/keys/<api_name>`.
 
 6b. fill the `<api_name>` file with your corresponding api keys in the following format (the api keys i filled out are made up):
+
+FILE_NAME: 
+MSAzureTTS API
+CONTENTS:
 ```
-FILE: MSAzureTTS API
-CONTENTS:xxxxxxxxxx
+APPID:xxxxxxxxxx
+KEY:xxxxxx
 ```
 
 7. run the app.py with python3
