@@ -14,19 +14,30 @@ def login(user_check, pw_check):
     db = sqlite3.connect("data/database.db")
     cursor = db.cursor()
 
-    cmd = "SELECT pw FROM users WHERE users.username = ?"
-    params = (user_check,)
-    cursor.execute(cmd, params)
-    check = cursor.fetchone()
+    command = "SELECT username, pw FROM users"
+    cursor.execute(command)
+    temp = cursor.fetchall()
+    users = dict(temp)
+    print(users)
+    if user_check not in users:
+        return 1
 
-    db.commit()
-    db.close()
-
-    if check == None:
-        # username doesnt exist
-        print("usrname dont exist")
-        return False
-    return check[0] == pw_check
+    if users[user_check] != pw_check:
+        return 2
+    return 0
+    # cmd = "SELECT pw FROM users WHERE users.username = ?"
+    # params = (user_check,)
+    # cursor.execute(cmd, params)
+    # check = cursor.fetchone()
+    #
+    # db.commit()
+    # db.close()
+    #
+    # if check == None:
+    #     # username doesnt exist
+    #     print("usrname dont exist")
+    #     return 1
+    # return 0
 
 def register(user, pw, cpw):
     '''Add user to db'''

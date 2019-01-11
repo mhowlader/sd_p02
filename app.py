@@ -51,13 +51,17 @@ def auth():
         x = request.form["username"]
         y = request.form["password"]
         print(x,y)
-        if db.login(x,y):
+        var = db.login(x,y)
+        if var == 0:
             session[x] = y
             flash("Logged in!")
             return render_template("home.html", category = "epic_win", flash = True)
+        elif var == 1 :
+            flash("Username not found!")
+
         else:
-            flash("Double check your login info!")
-            return render_template("login.html", category = "epic_fail", flash = True)
+            flash("Incorrect password!")
+        return render_template("login.html", category="epic_fail", flash=True)
     else:
         x = request.form["username"]
         y = request.form["password"]
