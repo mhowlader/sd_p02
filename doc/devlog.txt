@@ -61,3 +61,13 @@ jackL -- 2019-01-10 00:05
 --------------------------------------------------------------
 - Made database functions for registering user and logging in
 ==============================================================
+jasonT -- 2019-01-11 4:56
+--------------------------------------------------------------
+- added following html files: base, landing, login, register
+- did a little bit of css to make it look bearable
+- finished robust login
+- finished robust register
+- cases/unique flash messages for different types of errors in forms
+- colored error/success on login
+- fixed/tweaked db file for login/register to be more modular
+==============================================================
