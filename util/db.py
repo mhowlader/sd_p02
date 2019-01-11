@@ -77,28 +77,35 @@ def register(user, pw, cpw):
 def make_quiz(quiz_name, owner):
     '''Create quiz'''
     # Contents table has quizid as table name
-    db = sqlite3.connect('../data/database.db')
+    db = sqlite3.connect('data/database.db')
     cursor = db.cursor()
 
     #-----------get quiz id------------------
-    #cmd = "SELECT id FROM quiz"
-    #id_list = cursor.execute(cmd)[0]
-    #print(id_list)
+    cmd = "SELECT id FROM quiz"
+    id_list = cursor.execute(cmd).fetchall()
+    print(len(id_list))
+    new_id = len(id_list)
 
     #---------- insert new quiz -------------
-    #cmd = "INSERT INTO quiz VALUES(?, ?, ?)"
-    #params = (quiz_id, quiz_name, owner)
-    #cursor.execute(cmd, params)
+    cmd = "INSERT INTO quiz VALUES(?, ?, ?)"
+    params = (new_id, quiz_name, owner)
+    cursor.execute(cmd, params)
 
-    #cmd = "SELECT * FROM quiz"
-    #a = cursor.execute(cmd);
-    #for i in a:
-    #    print(i)
+    cmd = "SELECT * FROM quiz"
+    a = cursor.execute(cmd);
+    for i in a:
+        print(i)
 
     db.commit()
     db.close()
 
+    return new_id 
 
-#make_quiz('q1', 'test')
+def get_content( quiz_id ):
+    '''get contents of a quiz (table name is quiz_id)'''
+    return("sad")
+
+
+make_quiz('q2', 'test')
 #register('c','c')
 #print(login('test', '123'))
