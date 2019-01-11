@@ -1,3 +1,4 @@
+import os
 import sqlite3
 
 # CREATE TABLE users( username TEXT primary key, pw text);
@@ -8,7 +9,9 @@ import sqlite3
 
 def login(user_check, pw_check):
     '''Verifies username matches with pw'''
-    db = sqlite3.connect('../data/database.db')
+    x = os.path.abspath("data/database.db")
+    print(x)
+    db = sqlite3.connect("data/database.db")
     cursor = db.cursor()
 
     cmd = "SELECT pw FROM users WHERE users.username = ?"
@@ -25,22 +28,40 @@ def login(user_check, pw_check):
         return False
     return check[0] == pw_check
 
-def register(user, pw):
+def register(user, pw, cpw):
     '''Add user to db'''
-    db = sqlite3.connect('../data/database.db')
+    db = sqlite3.connect("data/database.db")
     cursor = db.cursor()
+    errs = [0,0,0,0,0]
+    for x,y in enumerate([user,pw,cpw]):
+        if len(y.strip()) == 0:
+            errs[x] = 1
+    command = "SELECT username FROM users"
+    cursor.execute(command)
+    temp = cursor.fetchall()
+    print(temp)
+    users = [x[0] for x in temp]
+    print(users)
+    if user in users:
+        #case that username is taken -> 0
+        errs[3] = 1
+    if pw != cpw:
+        #case that pw's dont match
+        errs[4] = 1
+    print(errs)
+    if sum(errs)==0:
+        cmd = "INSERT INTO users VALUES(?, ?)"
+        params = (user.strip(), pw)
+        cursor.execute(cmd, params)
 
-    cmd = "INSERT INTO users VALUES(?, ?)"
-    params = (user, pw)
-    cursor.execute(cmd, params)
+        #cmd = "SELECT * FROM users"
+        #a = cursor.execute(cmd);
+        #for i in a:
+        #    print(i)
 
-    #cmd = "SELECT * FROM users"
-    #a = cursor.execute(cmd);
-    #for i in a:
-    #    print(i)
-
-    db.commit()
-    db.close()
+        db.commit()
+        db.close()
+    return errs
 
 def make_quiz(quiz_name, owner):
     '''Create quiz'''
@@ -67,6 +88,6 @@ def make_quiz(quiz_name, owner):
     db.close()
 
 
-make_quiz('q1', 'test')
+#make_quiz('q1', 'test')
 #register('c','c')
 #print(login('test', '123'))
