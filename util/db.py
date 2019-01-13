@@ -99,13 +99,39 @@ def make_quiz(quiz_name, owner):
     db.commit()
     db.close()
 
+    make_content( new_id )
+
     return new_id 
+
+def make_content( quiz_id ):
+    '''Creates table of quiz contents for each quiz'''
+    db = sqlite3.connect('data/database.db')
+    cursor = db.cursor()
+
+    quiz_id = "q" + str(quiz_id)
+
+    cmd = "CREATE TABLE IF NOT EXISTS {q} (term STRING, def STRING)".format(q=quiz_id)
+    #params = (quiz_id)
+    cursor.execute(cmd)
+
+    db.commit()
+    db.close()
 
 def get_content( quiz_id ):
     '''get contents of a quiz (table name is quiz_id)'''
-    return("sad")
+    db = sqlite3.connect('data/database.db')
+    cursor = db.cursor()
 
+    quiz_id = "q" + str(quiz_id)
 
-make_quiz('q2', 'test')
+    cmd = "SELECT * FROM {q}".format(q=quiz_id)
+    data = cursor.execute(cmd).fetchall()
+    db.close()
+
+    print(data)
+
+#get_content( 3 )
+#make_content( 0 )
+#make_quiz('nani', 'test')
 #register('c','c')
 #print(login('test', '123'))
