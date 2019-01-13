@@ -132,6 +132,6 @@ def get_content( quiz_id ):
 
 #get_content( 3 )
 #make_content( 0 )
-#make_quiz('nani', 'test')
+#make_quiz('bquiz', 'b')
 #register('c','c')
 #print(login('test', '123'))
