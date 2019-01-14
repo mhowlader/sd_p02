@@ -13,12 +13,14 @@ Our project utilizes various APIs, so the user needs a json file with the API ke
 
 
 FILE_NAME: 
-Oxford Dictionaries API
+oxford.json
 
 CONTENTS:
 ```
-APPID:xxxxxxxxxx
-KEY:xxxxxx
+{
+"appid" :12345,
+"apikey": 12345
+}
 ```
 This will be elaborated upon in the instructions. Just fetch your API keys for now.
 
@@ -102,11 +104,13 @@ pip install -r requirements.txt
 6b. fill the `<api_name>` file with your corresponding api keys in the following format (the api keys i filled out are made up):
 
 FILE_NAME: 
-Oxford Dictionaries API
+oxford.json
 CONTENTS:
 ```
-APPID:xxxxxxxxxx
-KEY:xxxxxx
+{
+"appid" :12345,
+"apikey": 12345
+}
 ```
 
 7. run the app.py with python3
