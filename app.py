@@ -11,38 +11,20 @@ app.secret_key = os.urandom(32) #key for session
 
 @app.route('/')
 def hello_world():
-    if "logged_in" in session:
-        return render_template("home.html")
+    if len(session) != 0:
+        return render_template("home.html", logged = True)
     return render_template("landing.html")
 
 @app.route("/register")
 def register():
+    if len(session) != 0:
+        return render_template("home.html", logged = True)
     return render_template("register.html")
-
-@app.route("/adduser")
-def adduser():
-    user = request.args["username"].strip()
-    password = request.args["password"]
-    passwordc = request.args["confirm-password"]
-
-    if(not user or not password or not passwordc):
-        flash("Please fill in all fields")
-        return redirect(url_for("register"))
-
-    if(db.check_user(user)):
-        flash("User already exists")
-        return redirect(url_for("register"))
-
-    if(password != passwordc):
-        flash("Passwords don't match")
-        return redirect(url_for("register"))
-
-    db.add_user(user, password)
-    session["logged_in"] = request.args["username"]
-    return redirect(url_for("profile"))
 
 @app.route("/login")
 def login():
+    if len(session) != 0:
+        return render_template("home.html", logged = True)
     return render_template("login.html")
 
 @app.route("/auth", methods=['GET', 'POST'])
@@ -55,7 +37,7 @@ def auth():
         if var == 0:
             session[x] = y
             flash("Logged in!")
-            return render_template("home.html", category = "epic_win", flash = True)
+            return render_template("home.html", category = "epic_win", flash = True, logged = True)
         elif var == 1 :
             flash("Username not found!")
 
@@ -71,7 +53,7 @@ def auth():
         if sum(val) == 0:
             session[x] = y
             flash("Registered and logged in!")
-            return render_template("home.html", category="epic_win", flash=True)
+            return render_template("home.html", category="epic_win", flash=True, logged = True)
         if val[0] == 1:
             errs.append("Username is blank")
         if val[1] == 1:
@@ -86,7 +68,11 @@ def auth():
         for x in errs:
             flash(x)
         return render_template("register.html", category="epic_fail", flash=True)
-
+@app.route('/signout')
+def signout():
+    session.clear()
+    flash("Logged out!")
+    return render_template("landing.html", category = "epic_logout", flash = True)
 
 
 @app.route("/logout")

@@ -16,3 +16,49 @@
 .epic_win {
     color:lime;
 }
+
+.epic_win {
+    color:lime;
+}
+
+.epic_logout {
+    color:#007bff;
+}
+
+#encapsule {
+    padding-top: 20px;
+}
+table {
+    border: none;
+}
+
+
+#rightside {
+    text-align: left
+}
+#leftside {
+    text-align: right
+}
+#attribution {
+    color: #279640
+}
+button {
+    color: #007bff;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    padding: 10px;
+}
+
+
+
+.footer {
+  position: relative;
+  margin-top: -150px; /* negative value of footer height */
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+}

@@ -1,11 +1,8 @@
-
 {% extends "base.html" %}
-
 {% block title %}register{% endblock %}
 {% block body %}
     <h1> register here!</h1>
 <form action="/auth" method="POST">
-
     <b>
          Username: <input type = "text" name = "username" placeholder = "user" required>
          <br><br>
@@ -14,7 +11,7 @@
         Confirm Password: <input type = "password" name = "confirm-password" placeholder = "password" required>
     </b>
     <br><br>
-    <input type="submit" name="submit" value = "register">
+    <input type="submit" name="submit"  class = "btn btn-primary login" value = "register">
     <br><br>
   </form>
 
