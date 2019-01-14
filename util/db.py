@@ -6,12 +6,11 @@ import sqlite3
 # CREATE TABLE content( term text, definition text);
 # CREATE TABLE folders( owner text, name text, id integer primary key, quizzes text);
 
+db_path = "data/database.db"
 
 def login(user_check, pw_check):
     '''Verifies username matches with pw'''
-    x = os.path.abspath("data/database.db")
-    print(x)
-    db = sqlite3.connect("data/database.db")
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
 
     command = "SELECT username, pw FROM users"
@@ -41,7 +40,7 @@ def login(user_check, pw_check):
 
 def register(user, pw, cpw):
     '''Add user to db'''
-    db = sqlite3.connect("data/database.db")
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
     errs = [0,0,0,0,0]
     for x,y in enumerate([user,pw,cpw]):
@@ -74,10 +73,29 @@ def register(user, pw, cpw):
         db.close()
     return errs
 
+def get_user_quiz( user ):
+    '''
+        Get a list of all of a users quizzes
+        for home page
+    '''
+    db = sqlite3.connect(db_path)
+    cursor = db.cursor()
+
+    cmd = "SELECT name FROM quiz WHERE owner='{u}'".format(u=user)
+    #print(cmd)
+    data = cursor.execute(cmd).fetchall()
+    for i in data:
+        i = i[0]
+        #print(i)
+    db.commit()
+    db.close()
+    return data
+
+
 def make_quiz(quiz_name, owner):
     '''Create quiz'''
     # Contents table has quizid as table name
-    db = sqlite3.connect('data/database.db')
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
 
     #-----------get quiz id------------------
@@ -105,7 +123,7 @@ def make_quiz(quiz_name, owner):
 
 def make_content( quiz_id ):
     '''Creates table of quiz contents for each quiz'''
-    db = sqlite3.connect('data/database.db')
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
 
     quiz_id = "q" + str(quiz_id)
@@ -119,7 +137,7 @@ def make_content( quiz_id ):
 
 def get_content( quiz_id ):
     '''get contents of a quiz (table name is quiz_id)'''
-    db = sqlite3.connect('data/database.db')
+    db = sqlite3.connect(db_path)
     cursor = db.cursor()
 
     quiz_id = "q" + str(quiz_id)
@@ -130,8 +148,15 @@ def get_content( quiz_id ):
 
     print(data)
 
+def add_term( quiz_id, term, definition):
+    '''Add a term and definition to a quiz'''
+
+def delete_term( quiz_id, term ):
+    '''Delete a term from a quiz'''
+
+get_user_quiz( 'a' )
 #get_content( 3 )
 #make_content( 0 )
-#make_quiz('bquiz', 'b')
-#register('c','c')
+#make_quiz('testquiz', 'a')
+#register('jay','sen', 'sen')
 #print(login('test', '123'))
