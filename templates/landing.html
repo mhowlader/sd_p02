@@ -4,13 +4,17 @@
 {% block title %}Testlet{% endblock %}
 {% block body %}
 <!-- I PUT THIS ALL INTO DIVS; ADD THE CLASS AT YOUR OWN DISCRETION -->
-    <div style = "padding :25px;">
-    <h2>What is Testlet?</h2>
-    Testlet is a studying aid which mimics some of the core functionality of similar "index card"-style programs, most notably, Quizlet. As of now, we have made the decisions to make our services exclusively available to our members. Anyone can register an account for free.
+
+<div class="container ">
+    <div class="jumbotron my-3">
+        <h2>What is Testlet?</h2>
+        <p>Testlet is a studying aid which mimics some of the core functionality of similar "index card"-style programs, most notably, Quizlet. As of now, we have made the decisions to make our services exclusively available to our members. Anyone can register an account for free.</p>
     </div>
     <div>
-    <a href = "/login"> <button class="btn btn-primary login" >login</button></a>
-     <br>
-    <a href = "/register"> <button class="btn btn-primary login">register</button></a>
+        <a href = "/login"> <button class="btn btn-primary login" >login</button></a>
+        <br>
+        <a href = "/register"> <button class="btn btn-primary login">register</button></a>
     </div>
+
+</div>
 {% endblock %}
