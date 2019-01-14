@@ -18,8 +18,8 @@ oxford.json
 CONTENTS:
 ```
 {
-"appid" :12345,
-"apikey": 12345
+"appid" :"12345",
+"apikey": "12345"
 }
 ```
 This will be elaborated upon in the instructions. Just fetch your API keys for now.
@@ -109,8 +109,8 @@ oxford.json
 CONTENTS:
 ```
 {
-"appid" :12345,
-"apikey": 12345
+"appid" :"12345",
+"apikey": "12345"
 }
 ```
 
