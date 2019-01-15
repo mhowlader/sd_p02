@@ -1,47 +1,50 @@
-.login{
-    margin-left:10px;
+.login {
+    margin-left: 10px;
     margin-bottom: 5px;
-    width:120px;
- height:50px;
- text-align:center;
- line-height:1.1em;
- font-size:1.1em;
+    width: 120px;
+    height: 50px;
+    text-align: center;
+    line-height: 1.1em;
+    font-size: 1.1em;
 
 }
 
 .epic_fail {
- color:red;
+    color: red;
 }
 
 .epic_win {
-    color:lime;
+    color: lime;
 }
 
 .epic_win {
-    color:lime;
+    color: lime;
 }
 
 .epic_logout {
-    color:#007bff;
+    color: #007bff;
 }
 
 #encapsule {
     padding-top: 20px;
 }
+
 table {
     border: none;
 }
 
-
 #rightside {
     text-align: left
 }
+
 #leftside {
     text-align: right
 }
+
 #attribution {
     color: #279640
 }
+
 button {
     color: #007bff;
     background-color: transparent;
@@ -53,12 +56,10 @@ button {
     padding: 10px;
 }
 
-
-
 .footer {
-  position: relative;
-  margin-top: -150px; /* negative value of footer height */
-  height: 150px;
-  clear:both;
-  padding-top:20px;
+    position: relative;
+    margin-top: -150px; /* negative value of footer height */
+    height: 150px;
+    clear: both;
+    padding-top: 20px;
 }

@@ -8,6 +8,7 @@ import sqlite3
 
 db_path = "data/database.db"
 
+
 def login(user_check, pw_check):
     '''Verifies username matches with pw'''
     db = sqlite3.connect(db_path)
@@ -38,12 +39,13 @@ def login(user_check, pw_check):
     #     return 1
     # return 0
 
+
 def register(user, pw, cpw):
     '''Add user to db'''
     db = sqlite3.connect(db_path)
     cursor = db.cursor()
-    errs = [0,0,0,0,0]
-    for x,y in enumerate([user,pw,cpw]):
+    errs = [0, 0, 0, 0, 0]
+    for x, y in enumerate([user, pw, cpw]):
         if len(y.strip()) == 0:
             errs[x] = 1
     command = "SELECT username FROM users"
@@ -53,30 +55,31 @@ def register(user, pw, cpw):
     users = [x[0] for x in temp]
     print(users)
     if user in users:
-        #case that username is taken -> 0
+        # case that username is taken -> 0
         errs[3] = 1
     if pw != cpw:
-        #case that pw's dont match
+        # case that pw's dont match
         errs[4] = 1
     print(errs)
-    if sum(errs)==0:
+    if sum(errs) == 0:
         cmd = "INSERT INTO users VALUES(?, ?)"
         params = (user.strip(), pw)
         cursor.execute(cmd, params)
 
-        #cmd = "SELECT * FROM users"
-        #a = cursor.execute(cmd);
-        #for i in a:
+        # cmd = "SELECT * FROM users"
+        # a = cursor.execute(cmd);
+        # for i in a:
         #    print(i)
 
         db.commit()
         db.close()
     return errs
 
+
 # CREATE TABLE quiz( id integer primary key, name text, owner text);
 # CREATE TABLE content( term text, definition text);
 
-def get_user_quiz( user ):
+def get_user_quiz(user):
     '''
         Get a list of all of a users quizzes
         for home page
@@ -85,11 +88,11 @@ def get_user_quiz( user ):
     cursor = db.cursor()
 
     cmd = "SELECT name FROM quiz WHERE owner='{u}'".format(u=user)
-    #print(cmd)
+    # print(cmd)
     data = cursor.execute(cmd).fetchall()
     for i in data:
         i = i[0]
-        #print(i)
+        # print(i)
     db.commit()
     db.close()
     return data
@@ -101,13 +104,13 @@ def make_quiz(quiz_name, owner):
     db = sqlite3.connect(db_path)
     cursor = db.cursor()
 
-    #-----------get quiz id------------------
+    # -----------get quiz id------------------
     cmd = "SELECT id FROM quiz"
     id_list = cursor.execute(cmd).fetchall()
     print(len(id_list))
     new_id = len(id_list)
 
-    #---------- insert new quiz -------------
+    # ---------- insert new quiz -------------
     cmd = "INSERT INTO quiz VALUES(?, ?, ?)"
     params = (new_id, quiz_name, owner)
     cursor.execute(cmd, params)
@@ -120,11 +123,12 @@ def make_quiz(quiz_name, owner):
     db.commit()
     db.close()
 
-    make_content( new_id )
+    make_content(new_id)
 
-    return new_id 
+    return new_id
 
-def make_content( quiz_id ):
+
+def make_content(quiz_id):
     '''Creates table of quiz contents for each quiz'''
     db = sqlite3.connect(db_path)
     cursor = db.cursor()
@@ -132,16 +136,17 @@ def make_content( quiz_id ):
     quiz_id = "q" + str(quiz_id)
 
     cmd = "CREATE TABLE IF NOT EXISTS {q} (term STRING, def STRING)".format(q=quiz_id)
-    #params = (quiz_id)
+    # params = (quiz_id)
     cursor.execute(cmd)
 
     db.commit()
     db.close()
 
+
 # CREATE TABLE quiz( id integer primary key, name text, owner text);
 # CREATE TABLE content( term text, definition text);
 
-def get_content( quiz_id ):
+def get_content(quiz_id):
     '''get contents of a quiz (table name is quiz_id)'''
     db = sqlite3.connect(db_path)
     cursor = db.cursor()
@@ -154,15 +159,18 @@ def get_content( quiz_id ):
 
     print(data)
 
-def add_term( quiz_id, term, definition):
+
+def add_term(quiz_id, term, definition):
     '''Add a term and definition to a quiz'''
 
-def delete_term( quiz_id, term ):
+
+def delete_term(quiz_id, term):
     '''Delete a term from a quiz'''
 
-get_user_quiz( 'a' )
-#get_content( 3 )
-#make_content( 0 )
-#make_quiz('testquiz', 'a')
-#register('jay','sen', 'sen')
-#print(login('test', '123'))
+
+get_user_quiz('a')
+# get_content( 3 )
+# make_content( 0 )
+# make_quiz('testquiz', 'a')
+# register('jay','sen', 'sen')
+# print(login('test', '123'))
