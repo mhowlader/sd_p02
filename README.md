@@ -29,9 +29,11 @@ All of the APIs we used are hyperlinked in the table below with a brief descript
 
 api | description
 --- | ---
-[MSAzureTTS API](https://azure.microsoft.com/en-us/services/cognitive-services/text-to-speech/)  | pronounce terms/definitions from sets 
+<del>[MSAzureTTS API](https://azure.microsoft.com/en-us/services/cognitive-services/text-to-speech/)  | pronounce terms/definitions from sets </del>
 [Oxford Dictionaries API](https://developer.oxforddictionaries.com/) | generate suggested definitions for terms when creating sets
 [OpenTriviaDB API](https://opentdb.com/) | generate trivia questions to make sets automatically (no API key)
+
+note: we will not be using tts as planned.
 
 ### Dependencies: 
 Our dependencies, as listed in requirements.txt, are as follows:
