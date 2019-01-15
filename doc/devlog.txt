@@ -71,3 +71,10 @@ jasonT -- 2019-01-11 4:56
 - colored error/success on login
 - fixed/tweaked db file for login/register to be more modular
 ==============================================================
+
+jasonT -- 2019-01-14 13:56
+--------------------------------------------------------------
+- fixed flashing that was broken from css
+- fixed broken buttons from css
+- added a signout
+==============================================================
