@@ -64,7 +64,7 @@
     {% block flashing %}
         {% if flash %}
             {% set msgs = get_flashed_messages() %}
-            <div class="alert alert-primary" role="alert">
+            <div class="alert alert-primary {{ category }}" role="alert">
                 {% for each in msgs %}
                     {{ each }} <br>
                 {% endfor %}

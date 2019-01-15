@@ -9,6 +9,8 @@ app = Flask(__name__)
 
 app.secret_key = os.urandom(32)  # key for session
 
+#recencrt, quizid
+d = {"recentcrt": False, "quizid": -1}
 
 @app.route('/')
 def hello_world():
@@ -46,7 +48,7 @@ def auth():
                 session[x] = y
                 flash("Logged in!")
                 user=x
-                return render_template("home.html", category="epic_win", flash=True, logged=True)
+                return render_template("home.html", category="epic_logout", flash=True, logged=True)
             elif var == 1:
                 flash("Username not found!")
             else:
@@ -61,7 +63,7 @@ def auth():
             if sum(val) == 0:
                 session[x] = y
                 flash("Registered and logged in!")
-                return render_template("home.html", category="epic_win", flash=True, logged=True)
+                return render_template("home.html", category="epic_logout", flash=True, logged=True)
             if val[0] == 1:
                 errs.append("Username is blank")
             if val[1] == 1:
@@ -110,6 +112,8 @@ def contact():
         return render_template("contact.html", logged=True)
     return render_template("contact.html")
 
+
+#info = db.get_content(quizid), logged = True, category = "epic_win", flash = True
 @app.route("/create_auth", methods=['GET', 'POST'])
 def create_auth():
     try:
@@ -131,13 +135,33 @@ def create_auth():
             term = request.form["term" + str(x)]
             definition = request.form["def" + str(x)]
             db.add_term(quizid, term, definition)
-        flash ("Successfully added!")
-        return render_template("view.html", info = db.get_content(quizid), logged = True, category = "epic_win", flash = True)
+        d["recentcrt"] = True
+        d["quizid"] = quizid
+        print("REDIRECTING YOIU TO VIEW QUID ID :" + str(quizid))
+        print("VIEW_STORY IS " + str(d["quizid"]))
+        return redirect("/view")
     except:
         if len(session) != 0:
             flash("Something bad happened...")
             return render_template("create.html", logged=True, category = "epic_fail", flash = True)
         return render_template("landing.html")
+
+@app.route('/view')
+def view():
+    print("VIEWING SOME STORY NOW")
+    if len(session) != 0:
+        flashit = False
+        print("-VIEW_STORY IS " + str(d["quizid"]))
+        if d["quizid"] == -1:
+            flash("Try viewing something else.")
+            return render_template("home.html", flash=True, category="epic_fail", logged = True)
+        if d["recentcrt"]:
+            flashit, d["recentcrt"] = d["recentcrt"], False
+            flash("Successfully added!")
+        tempquiz, d["quizid"] = d["quizid"], -1
+        return render_template("view.html", info=db.get_content(tempquiz), logged=True, category="epic_win", flash=flashit)
+    flash("Log in to access your sets.")
+    return render_template("landing.html", flash = True, category = "epic_fail")
 
 if __name__ == "__main__":
     app.debug = True

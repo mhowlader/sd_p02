@@ -10,19 +10,22 @@
 }
 
 .epic_fail {
-    color: red;
+      color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
 }
 
 .epic_win {
-    color: lime;
-}
+    color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
 
-.epic_win {
-    color: lime;
 }
 
 .epic_logout {
-    color: #007bff;
+   color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
 }
 
 #encapsule {
