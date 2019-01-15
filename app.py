@@ -139,7 +139,7 @@ def create_auth():
         d["quizid"] = quizid
         print("REDIRECTING YOIU TO VIEW QUID ID :" + str(quizid))
         print("VIEW_STORY IS " + str(d["quizid"]))
-        return redirect("/view")
+        return redirect(url_for("view", quizid = quizid))
     except:
         if len(session) != 0:
             flash("Something bad happened...")
@@ -147,19 +147,29 @@ def create_auth():
         return render_template("landing.html")
 
 @app.route('/view')
-def view():
+def baseview():
+    flash("Don't do that.")
+    if len(session) != 0:
+        return render_template("home.html", logged=True, flash = True, category = "epic_fail")
+    return render_template("landing.html", flash = True, category = "epic_fail")
+
+
+@app.route('/view/<quizid>')
+def view(quizid):
     print("VIEWING SOME STORY NOW")
     if len(session) != 0:
         flashit = False
-        print("-VIEW_STORY IS " + str(d["quizid"]))
-        if d["quizid"] == -1:
-            flash("Try viewing something else.")
+        #later add to see if you can actually access that quiz.
+        user = list(session.items())[0][0]
+        print(db.get_user_quizid(user))
+        print((quizid,))
+        if (int(quizid),) not in db.get_user_quizid(user):
+            flash("Not your quiz, buddy...")
             return render_template("home.html", flash=True, category="epic_fail", logged = True)
         if d["recentcrt"]:
             flashit, d["recentcrt"] = d["recentcrt"], False
             flash("Successfully added!")
-        tempquiz, d["quizid"] = d["quizid"], -1
-        return render_template("view.html", info=db.get_content(tempquiz), logged=True, category="epic_win", flash=flashit)
+        return render_template("view.html", info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit)
     flash("Log in to access your sets.")
     return render_template("landing.html", flash = True, category = "epic_fail")
 

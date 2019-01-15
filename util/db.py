@@ -97,6 +97,24 @@ def get_user_quiz(user):
     db.close()
     return data
 
+def get_user_quizid(user):
+    '''
+        Get a list of all of a users quizzesids
+        for home page
+    '''
+    db = sqlite3.connect(db_path)
+    cursor = db.cursor()
+
+    cmd = "SELECT id FROM quiz WHERE owner='{u}'".format(u=user)
+    # print(cmd)
+    data = cursor.execute(cmd).fetchall()
+    # for i in data:
+    #     i = i[0]
+    #     # print(i)
+    db.commit()
+    db.close()
+    return data
+
 
 def make_quiz(quiz_name, owner):
     '''Create quiz'''
