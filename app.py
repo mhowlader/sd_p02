@@ -90,8 +90,8 @@ def public_sets():
 @app.route('/create')
 def create():
     if len(session) != 0:
-        return render_template("public_sets.html.html", logged = True)
-    return render_template("public_sets.html")
+        return render_template("create.html", logged = True)
+    return render_template("landing.html")
 
 
 if __name__ == "__main__":
