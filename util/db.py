@@ -155,6 +155,8 @@ def get_content(quiz_id):
 
     cmd = "SELECT * FROM {q}".format(q=quiz_id)
     data = cursor.execute(cmd).fetchall()
+
+    db.commit()
     db.close()
 
     return data
@@ -162,6 +164,18 @@ def get_content(quiz_id):
 
 def add_term(quiz_id, term, definition):
     '''Add a term and definition to a quiz'''
+    db = sqlite3.connect(db_path)
+    cursor = db.cursor()
+
+    qid = "q" + str(quiz_id)
+
+    cmd = "INSERT INTO {table} VALUES('{term}','{defin}')".format(table = qid, term = term, defin = definition )
+    print(cmd)
+    data = cursor.execute(cmd)
+
+    db.commit()
+    db.close()
+    return term
 
 
 def delete_term(quiz_id, term):
