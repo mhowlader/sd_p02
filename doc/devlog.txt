@@ -78,3 +78,11 @@ jasonT -- 2019-01-14 13:56
 - fixed broken buttons from css
 - added a signout
 ==============================================================
+
+jasonT -- 2019-01-15 4:33
+--------------------------------------------------------------
+- finished set creation
+- finished viewing sets
+- added some css
+- add 2 db functions: get all quizzes from a user, and add a term into the db
+==============================================================
