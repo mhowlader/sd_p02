@@ -73,6 +73,9 @@ def register(user, pw, cpw):
         db.close()
     return errs
 
+# CREATE TABLE quiz( id integer primary key, name text, owner text);
+# CREATE TABLE content( term text, definition text);
+
 def get_user_quiz( user ):
     '''
         Get a list of all of a users quizzes
@@ -134,6 +137,9 @@ def make_content( quiz_id ):
 
     db.commit()
     db.close()
+
+# CREATE TABLE quiz( id integer primary key, name text, owner text);
+# CREATE TABLE content( term text, definition text);
 
 def get_content( quiz_id ):
     '''get contents of a quiz (table name is quiz_id)'''
