@@ -196,11 +196,25 @@ def add_term(quiz_id, term, definition):
     return term
 
 
-def delete_term(quiz_id, term):
+def delete_term(quiz_id, term, definition):
     '''Delete a term from a quiz'''
+    db = sqlite3.connect(db_path)
+    cursor = db.cursor()
+
+    qid = "q" + str(quiz_id)
+    cmd = "DELETE FROM {table} WHERE term='{term}' AND def='{defn}'".format(table = qid, term = term, defn=definition);
+    cursor.execute(cmd)
+    #cmd = "SELECT * FROM {table}".format(table = qid)
+    #data = cursor.execute(cmd).fetchall()
+    #print(data)
+
+    db.commit()
+    db.close()
 
 
-get_user_quiz('a')
+
+# delete_term('48', 'aaa', 'bbb');
+# get_user_quiz('a')
 # get_content( 3 )
 # make_content( 0 )
 # make_quiz('testquiz', 'a')
