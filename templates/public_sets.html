@@ -3,4 +3,22 @@
 {% block body %}
     <h1> These are the publicly available sets.</h1>
 
+    <div class="container">
+        <div class="row" style="padding-top:5px">
+
+            <div class="col-4 text-center">
+                <b> Set Name </b>
+            </div>
+        </div>
+        {% for name,id in quizList %}
+        <div class="row" style="padding-top:5px">
+            <div class="col-lg-6 col-md-6 col-sm-6  text-center">
+                <href="view/{{id}}"> {{ name }} </href>
+            </div>
+        </div>
+        {% endfor %}
+
+        
+
+
 {% endblock %}
