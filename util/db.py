@@ -157,7 +157,7 @@ def get_content(quiz_id):
     data = cursor.execute(cmd).fetchall()
     db.close()
 
-    print(data)
+    return data
 
 
 def add_term(quiz_id, term, definition):

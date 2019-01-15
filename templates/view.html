@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+<!-- fix this when jack adds the fx -->
+{% block title %}Viewing {{ quizid }}{% endblock %}
+{% block body %}
+<h1>Viewing {{ quizid }}</h1>
+    {% for k, v in info %}
+        {{ k }}
+        {{ v }}
+        <br>
+    {% endfor %}
+
+{% endblock %}

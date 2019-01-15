@@ -34,6 +34,9 @@ def login():
 @app.route("/auth", methods=['GET', 'POST'])
 def auth():
     try:
+        print("~~~~~~~~~~~~~~LOGGING IN~~~~~~~~~~~~~~")
+        print(request)
+        print(request.form)
         if request.form["submit"] == "login":
             x = request.form["username"]
             y = request.form["password"]
@@ -42,6 +45,7 @@ def auth():
             if var == 0:
                 session[x] = y
                 flash("Logged in!")
+                user=x
                 return render_template("home.html", category="epic_win", flash=True, logged=True)
             elif var == 1:
                 flash("Username not found!")
@@ -106,6 +110,34 @@ def contact():
         return render_template("contact.html", logged=True)
     return render_template("contact.html")
 
+@app.route("/create_auth", methods=['GET', 'POST'])
+def create_auth():
+    try:
+        print("~~~~~~~~~~~~~~~~~ADDING A SET~~~~~~~~~~~")
+        # print(list(session.items()))
+        user = list(session.items())[0][0]
+        # print(user)
+        # print(request)
+        # print(request.form)
+        title = request.form["title"]
+        count = request.form["count"]
+        terms = []
+        defs = []
+        # print(title)
+        # print(count)
+        quizid = db.make_quiz(title, user)
+        print("QUIZID: " + str(quizid))
+        for x in range(int(count)):
+            term = request.form["term" + str(x)]
+            definition = request.form["def" + str(x)]
+            db.add_term(quizid, term, definition)
+        flash ("Successfully added!")
+        return render_template("view.html", info = db.get_content(quizid), logged = True, category = "epic_win", flash = True)
+    except:
+        if len(session) != 0:
+            flash("Something bad happened...")
+            return render_template("create.html", logged=True, category = "epic_fail", flash = True)
+        return render_template("landing.html")
 
 if __name__ == "__main__":
     app.debug = True
