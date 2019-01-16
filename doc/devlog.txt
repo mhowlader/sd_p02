@@ -95,4 +95,6 @@ jasonT -- 2019-01-16 03:06
 - finished viewing public sets
 - finished viewing your own old sets
 - added a fx to refactor db lists
+- adjusted css on viewing pages
+- added username to navbar
 ==============================================================
