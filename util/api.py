@@ -1,4 +1,15 @@
 import json, random
 from urllib.request import Request, urlopen
 
-from util import db
+
+oxford=""
+with open("../keys/oxford.json") as file:
+    oxford=json.load(file)
+
+
+
+appid=oxford["appid"]
+apikey=oxford["apikey"]
+
+print(appid)
+print(apikey)
