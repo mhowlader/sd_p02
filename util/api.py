@@ -7,7 +7,6 @@ with open("../keys/oxford.json") as file:
     oxford=json.load(file)
 
 
-
 appid=oxford["appid"]
 apikey=oxford["apikey"]
 

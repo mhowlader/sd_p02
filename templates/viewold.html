@@ -17,19 +17,19 @@
             <div class="card">
                 <div class="card-body">
                     <h5>
-                        <a href = "view/{{ id }}" > {{ name }} </a>
+                        <a href  = "view/{{ id }}" > {{ name }} </a>
                     </h5>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <form action="study">
-                            <button class="btn btn-primary m-3" type="submit" name="studyBut">Study</button>
-                        </form>
+                        <a href="view/{{ id }}" class="btn btn-primary m-3" role="button">Study
+                            <!-- <button class="btn btn-primary m-3" type="submit" name="studyBut">Study</button> -->
+                        </a>
                     </div>
                     <div class="col">
-                        <form action="test">
-                            <button class="btn btn-secondary m-3" type="submit" name="testBut"> Take Test </button>
-                        </form>
+                        <a href="test/{{ id }}" class="btn btn-secondary m-3" role="button"> Take Test
+                            <!-- <button class="btn btn-secondary m-3" type="submit" name="testBut"> Take Test </button> -->
+                        </a>
                     </div>
                 </div>
             </div>

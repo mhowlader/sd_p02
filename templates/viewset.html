@@ -2,26 +2,35 @@
 <!-- fix this when jack adds the fx -->
 {% block title %}Viewing {{ quizid }}{% endblock %}
 {% block body %}
-    <h1>Viewing {{ quizid }}</h1>
-    <div class="container" style="padding:15px;">
-        <div class="row">
+<h1>Viewing {{ quizid }}</h1>
+<div class="container" style="padding:15px;">
+    <div class="row">
 
-            <div class="col-lg-6 col-md-6 col-sm-6  text-center">
-                <b>Terms</b>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6  text-center">
-                <b>Definitions</b>
-            </div>
+        <div class="col-6  text-center">
+            <h3><b>Terms</b></h3>
         </div>
-        {% for k, v in info %}
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6  text-center">
+        <div class="col-6  text-center">
+            <h3><b>Definitions</b></h3>
+        </div>
+    </div>
+    {% for k, v in info %}
+    <div class="row">
+        <div class="col-6  text-center">
+            <div class="card">
+                <div class="card-body">
                     {{ k }}
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6  text-center">
+            </div>
+        </div>
+        <div class="col-6  text-center">
+            <div class="card">
+                <div class="card-body">
                     {{ v }}
                 </div>
             </div>
-        {% endfor %}
+        </div>
     </div>
+    {% endfor %}
+</div>
+
 {% endblock %}
