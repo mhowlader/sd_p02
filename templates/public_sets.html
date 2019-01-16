@@ -6,14 +6,14 @@
     <div class="container">
         <div class="row" style="padding-top:5px">
 
-            <div class="col-4 text-center">
+            <div class="col-12 text-center">
                 <b> Set Name </b>
             </div>
         </div>
         {% for name,id in pubquizzes %}
         <div class="row" style="padding-top:5px">
             <div class="col-lg-12 col-md-12 col-sm-12  text-center">
-                <href = "view/{{ id }}" > {{ name }} </href>
+                <a href = "view/{{ id }}" > {{ name }} </a>
             </div>
         </div>
         {% endfor %}

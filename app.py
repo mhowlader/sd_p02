@@ -95,9 +95,19 @@ def signout():
 
 @app.route('/public_sets')
 def public_sets():
+    user = "admin"
+    quizzes = db.get_user_quiz(user)
+    print(quizzes)
+    quizids = db.get_user_quizid(user)
+    print(quizids)
+    user_sets = {}
+    for x in range(len(quizzes)):
+        user_sets[quizzes[x][0]] = quizids[x][0]
+    print("hel------o")
+    print(user_sets)
     if len(session) != 0:
-        return render_template("public_sets.html", logged=True,user=list(session.items())[0][0])
-    return render_template("public_sets.html")
+        return render_template("public_sets.html",pubquizzes = user_sets.items(), logged=True,user=list(session.items())[0][0])
+    return render_template("public_sets.html",pubquizzes = user_sets.items())
 
 
 @app.route('/create')
@@ -148,28 +158,48 @@ def create_auth():
 
 @app.route('/view')
 def baseview():
-    flash("Don't do that.")
+    user = list(session.items())[0][0]
+    quizzes = db.get_user_quiz(user)
+    print(quizzes)
+    quizids = db.get_user_quizid(user)
+    print(quizids)
+    user_sets = {}
+    for x in range(len(quizzes)):
+        user_sets[quizzes[x][0]] = quizids[x][0]
+    print("hello dude")
+    print(user_sets)
     if len(session) != 0:
-        return render_template("home.html", logged=True, flash = True, category = "epic_fail",user=list(session.items())[0][0])
-    return render_template("landing.html", flash = True, category = "epic_fail")
+        return render_template("viewold.html", quizlist = user_sets.items(), logged=True, user=user)
+    flash("Log in to access your sets.")
+    return render_template("landing.html",category = "epic_fail", flash = True)
 
+def refactor(x):
+    return [k[0] for k in x]
 
 @app.route('/view/<quizid>')
 def view(quizid):
     print("VIEWING SOME STORY NOW")
+    pubquiz = db.get_user_quizid("admin")
+    pubquiz = refactor(pubquiz)
+    print(pubquiz)
+    print(quizid)
+    print(int(quizid) in pubquiz)
+    if int(quizid) in pubquiz:
+        if len(session) != 0:
+            return render_template("viewset.html", info=db.get_content(quizid), logged=True, user=list(session.items())[0][0])
+        return render_template("viewset.html", info=db.get_content(quizid))
     if len(session) != 0:
         flashit = False
         #later add to see if you can actually access that quiz.
         user = list(session.items())[0][0]
-        print(db.get_user_quizid(user))
-        print((quizid,))
-        if (int(quizid),) not in db.get_user_quizid(user):
+        myquizzes = refactor(db.get_user_quizid(user))
+        if int(quizid) not in myquizzes:
             flash("Not your quiz, buddy...")
             return render_template("home.html", flash=True, category="epic_fail", logged = True,user=list(session.items())[0][0])
         if d["recentcrt"]:
             flashit, d["recentcrt"] = d["recentcrt"], False
             flash("Successfully added!")
-        return render_template("view.html", info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
+        return render_template("viewset.html", info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
     flash("Log in to access your sets.")
     return render_template("landing.html", flash = True, category = "epic_fail")
 
