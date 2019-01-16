@@ -8,7 +8,7 @@
     <div class="row" style="padding-top:5px">
 
         <div class="col-12 text-center">
-            <b> Set Name </b>
+            <h2><b> Set Name </b> </h2>
         </div>
     </div>
     {% for name,id in quizlist %}
@@ -23,17 +23,19 @@
                 <div class="row">
                     <div class="col">
                         <form action="study">
-                            <button class="btn btn-primary" type="submit" name="studyBut">Study</button>
+                            <button class="btn btn-primary m-3" type="submit" name="studyBut">Study</button>
                         </form>
                     </div>
                     <div class="col">
                         <form action="test">
-                            <button class="btn btn-secondary" type="submit" name="testBut"> Take Test </button>
+                            <button class="btn btn-secondary m-3" type="submit" name="testBut"> Take Test </button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
-    {% endblock %}
+    {% endfor %}
+</div>
+
+{% endblock %}
