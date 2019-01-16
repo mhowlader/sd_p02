@@ -15,21 +15,21 @@ d = {"recentcrt": False, "quizid": -1}
 @app.route('/')
 def hello_world():
     if len(session) != 0:
-        return render_template("home.html", logged=True)
+        return render_template("home.html", logged=True, user=list(session.items())[0][0])
     return render_template("landing.html")
 
 
 @app.route("/register")
 def register():
     if len(session) != 0:
-        return render_template("home.html", logged=True)
+        return render_template("home.html", logged=True, user=list(session.items())[0][0])
     return render_template("register.html")
 
 
 @app.route("/login")
 def login():
     if len(session) != 0:
-        return render_template("home.html", logged=True)
+        return render_template("home.html", logged=True, user=list(session.items())[0][0])
     return render_template("login.html")
 
 
@@ -48,12 +48,12 @@ def auth():
                 session[x] = y
                 flash("Logged in!")
                 user=x
-                return render_template("home.html", category="epic_logout", flash=True, logged=True)
+                return render_template("home.html", category="epic_logout", flash=True, logged=True,user=list(session.items())[0][0])
             elif var == 1:
                 flash("Username not found!")
             else:
                 flash("Incorrect password!")
-            return render_template("login.html", category="epic_fail", flash=True)
+            return render_template("login.html", category="epic_fail", flash=True,)
         else:
             x = request.form["username"]
             y = request.form["password"]
@@ -63,7 +63,7 @@ def auth():
             if sum(val) == 0:
                 session[x] = y
                 flash("Registered and logged in!")
-                return render_template("home.html", category="epic_logout", flash=True, logged=True)
+                return render_template("home.html", category="epic_logout", flash=True, logged=True,user=list(session.items())[0][0])
             if val[0] == 1:
                 errs.append("Username is blank")
             if val[1] == 1:
@@ -80,7 +80,7 @@ def auth():
             return render_template("register.html", category="epic_fail", flash=True)
     except:
         if len(session) != 0:
-            return render_template("home.html", logged=True)
+            return render_template("home.html", logged=True,user=list(session.items())[0][0])
         return render_template("landing.html")
 
 
@@ -96,20 +96,20 @@ def signout():
 @app.route('/public_sets')
 def public_sets():
     if len(session) != 0:
-        return render_template("public_sets.html", logged=True)
+        return render_template("public_sets.html", logged=True,user=list(session.items())[0][0])
     return render_template("public_sets.html")
 
 
 @app.route('/create')
 def create():
     if len(session) != 0:
-        return render_template("create.html", logged=True)
+        return render_template("create.html", logged=True,user=list(session.items())[0][0])
     return render_template("landing.html")
 
 @app.route('/contact')
 def contact():
     if len(session) != 0:
-        return render_template("contact.html", logged=True)
+        return render_template("contact.html", logged=True,user=list(session.items())[0][0])
     return render_template("contact.html")
 
 
@@ -143,14 +143,14 @@ def create_auth():
     except:
         if len(session) != 0:
             flash("Something bad happened...")
-            return render_template("create.html", logged=True, category = "epic_fail", flash = True)
+            return render_template("create.html", logged=True, category = "epic_fail", flash = True,user=list(session.items())[0][0])
         return render_template("landing.html")
 
 @app.route('/view')
 def baseview():
     flash("Don't do that.")
     if len(session) != 0:
-        return render_template("home.html", logged=True, flash = True, category = "epic_fail")
+        return render_template("home.html", logged=True, flash = True, category = "epic_fail",user=list(session.items())[0][0])
     return render_template("landing.html", flash = True, category = "epic_fail")
 
 
@@ -165,11 +165,11 @@ def view(quizid):
         print((quizid,))
         if (int(quizid),) not in db.get_user_quizid(user):
             flash("Not your quiz, buddy...")
-            return render_template("home.html", flash=True, category="epic_fail", logged = True)
+            return render_template("home.html", flash=True, category="epic_fail", logged = True,user=list(session.items())[0][0])
         if d["recentcrt"]:
             flashit, d["recentcrt"] = d["recentcrt"], False
             flash("Successfully added!")
-        return render_template("view.html", info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit)
+        return render_template("view.html", info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
     flash("Log in to access your sets.")
     return render_template("landing.html", flash = True, category = "epic_fail")
 

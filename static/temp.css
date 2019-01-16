@@ -57,6 +57,20 @@ button {
     overflow: hidden;
     outline: none;
     padding: 10px;
+    border-color:transparent;
+    outline-color:transparent;
+}
+
+.button:hover{
+    border-color:transparent;
+    outline-color:transparent;
+    background-color:#35e879;
+}
+
+.btn:hover{
+    border-color:transparent;
+    outline-color:transparent;
+    background-color:#35e879;
 }
 
 .footer {
@@ -80,8 +94,17 @@ button {
 }
 
 .block {
+    border-color:transparent;
+    outline-color:transparent;
+    background-color: #007bff;
   display: block;
   width: 100%;
   cursor: pointer;
   text-align: center;
+}
+
+.block:hover{
+    border-color:transparent;
+    outline-color:transparent;
+    background-color:#35e879;
 }
