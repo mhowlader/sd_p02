@@ -53,7 +53,7 @@ def auth():
                 flash("Username not found!")
             else:
                 flash("Incorrect password!")
-            return render_template("login.html", category="epic_fail", flash=True,)
+            return render_template("login.html", category="epic_fail", flash=True)
         else:
             x = request.form["username"]
             y = request.form["password"]
