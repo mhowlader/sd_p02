@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+<!-- fix this when jack adds the fx -->
+{% block title %}Viewing {{ quizid }}{% endblock %}
+{% block body %}
+    <h1>Viewing {{ quizid }}</h1>
+    <div class="container" style="padding:15px;">
+      <div class = "card card-body">
+	{{info}}
+      </div>
+    </div>
+    <script>
+      var counter = 0;
+      
+    </script>
+{% endblock %}
+
+
+    24
+
+I had a similar problem using Flask, but I did not have to resort to JSON. I just passed a list letters = ['a','b','c'] with render_template('show_entries.html', letters=letters), and set
+
+var letters = {{ letters|safe }}
+in my javascript code. Jinja2 replaced {{ letters }} with ['a','b','c'], which javascript interpreted as an array of strings.
+
