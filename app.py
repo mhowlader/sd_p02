@@ -103,10 +103,10 @@ def public_sets():
     user_sets = {}
     for x in range(len(quizzes)):
         user_sets[quizzes[x][0]] = quizids[x][0]
-    print("hel------o")
+    print("Hello")
     print(user_sets)
     if len(session) != 0:
-        return render_template("public_sets.html",pubquizzes = user_sets.items(), logged=True,user=list(session.items())[0][0])
+        return render_template("public_sets.html", pubquizzes = user_sets.items(), logged=True,user=list(session.items())[0][0])
     return render_template("public_sets.html",pubquizzes = user_sets.items())
 
 
@@ -246,7 +246,7 @@ def delete(quizid):
 #    print("DELETE SET")
 #    print("QID = " + quizid)
 #    return redirect(url_for('view', quizid=quizid))
-    
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
