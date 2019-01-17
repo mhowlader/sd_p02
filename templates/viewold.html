@@ -5,37 +5,37 @@
 <h1> These are the your created sets.</h1>
 
 <div class="container">
-    <div class="row" style="padding-top:5px">
+  <div class="row" style="padding-top:5px">
 
-        <div class="col-12 text-center">
-            <h2><b> Set Name </b> </h2>
-        </div>
+    <div class="col-12 text-center">
+      <h2><b> Set Name </b> </h2>
     </div>
-    {% for name,id in quizlist %}
-    <div class="row" style="padding-top:5px">
-        <div class="col-4 text-center" style="margin: 0 auto">
-            <div class="card">
-                <div class="card-body">
-                    <h5>
-                        <a href = "view/{{ id }}" > {{ name }} </a>
-                    </h5>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <a href="view/{{ id }}" class="btn btn-primary m-3" role="button">Study
-                            <!-- <button class="btn btn-primary m-3" type="submit" name="studyBut">Study</button> -->
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="test/{{ id }}" class="btn btn-secondary m-3" role="button"> Take Test
-                            <!-- <button class="btn btn-secondary m-3" type="submit" name="testBut"> Take Test </button> -->
-                        </a>
-                    </div>
-                </div>
+  </div>
+  {% for name,id in quizlist %}
+  <div class="row" style="padding-top:5px">
+    <div class="col-4 text-center" style="margin: 0 auto">
+      <div class="card">
+        <div class="card-body">
+          <h5>
+            <a href = "view/{{ id }}" > {{ name }} </a>
+          </h5>
+        </div>
+        <div class="row">
+          <div class="col">
+            <a href="view/{{ id }}" class="btn btn-primary m-3" role="button">Study
+              <!-- <button class="btn btn-primary m-3" type="submit" name="studyBut">Study</button> -->
+            </a>
+          </div>
+          <div class="col">
+            <a href="test/{{ id }}" class="btn btn-secondary m-3" role="button"> Take Test
+              <!-- <button class="btn btn-secondary m-3" type="submit" name="testBut"> Take Test </button> -->
+            </a>
+          </div>
+        </div>
 
-            </div>
-        </div>
+      </div>
     </div>
-    {% endfor %}
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}

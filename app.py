@@ -203,6 +203,7 @@ def view(quizid):
     flash("Log in to access your sets.")
     return render_template("landing.html", flash = True, category = "epic_fail")
 
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
