@@ -229,6 +229,39 @@ def edit(quizid):
     flash("Log in to edit your quiz.")
     return render_template("landing.html", flash = True, category = "epic_fail")
 
+@app.route("/edit_auth", methods=['GET', 'POST'])
+def edit_auth():
+    try:
+        print("~~~~~~~~~~~~~~~~~Editing A SET~~~~~~~~~~~")
+        # print(list(session.items()))
+        user = list(session.items())[0][0]
+        # print(user)
+        # print(request)
+        # print(request.form)
+        title = request.form["title"]
+        count = request.form["count"]
+        terms = []
+        defs = []
+        # print(title)
+        # print(count)
+        quizid = db.make_quiz(title, user)
+        print("QUIZID: " + str(quizid))
+        for x in range(int(count)):
+            term = request.form["term" + str(x)]
+            definition = request.form["def" + str(x)]
+            db.add_term(quizid, term, definition)
+        d["recentcrt"] = True
+        d["quizid"] = quizid
+        print("REDIRECTING YOIU TO VIEW QUID ID :" + str(quizid))
+        print("VIEW_STORY IS " + str(d["quizid"]))
+        return redirect(url_for("view", quizid = quizid))
+    except:
+        if len(session) != 0:
+            flash("Something bad happened...")
+            return render_template("create.html", logged=True, category = "epic_fail", flash = True,user=list(session.items())[0][0])
+        return render_template("landing.html")
+
+
 @app.route("/delete/<quizid>", methods=["POST"])
 def delete(quizid):
     print("DEL METHOD")
@@ -240,6 +273,8 @@ def delete(quizid):
     print("def = " + defin)
     db.delete_term(quizid, term, defin)
     return redirect(url_for('edit', quizid = quizid))
+
+
 
 #@app.route("/delete/<quizid>")
 #def del_set(quizid):
