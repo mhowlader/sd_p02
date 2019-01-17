@@ -15,8 +15,13 @@ print(apikey)
 
 
 def get_defin(term):
-    '''Get def of term'''
+    '''Get def of term
+        URL
+        https://developer.oxforddictionaries.com/documentation#!/Dictionary32entries/get_entries_source_lang_word_id
+    '''
     BASE_URL = "https://od-api.oxforddictionaries.com/api/v1"
+    lang = 'en'
+    word_id = term
     with open("../keys/oxford.json") as file:
         oxford=json.load(file)
     appid=oxford["appid"]
