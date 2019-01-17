@@ -7,7 +7,7 @@ var count = Number(countbox.getAttribute("value"));
 
 var makecell = (type) => {
     var top = document.createElement("div");
-    top.classList.add("col-lg-6", "col-md-6", "col-sm-6", "text-center");
+    top.classList.add("col-6","text-center");
     var ele = document.createElement("input");
     var typecount = type + count;
     ele.id = typecount;
