@@ -145,6 +145,23 @@ def make_quiz(quiz_name, owner):
 
     return new_id
 
+def delete_quiz(quizid):
+    '''delete quiz'''
+    db = sqlite3.connect(db_path)
+    cursor = db.cursor()
+    
+    cmd = "DELETE FROM quiz WHERE id={q}".format(q=quizid)
+    cursor.execute(cmd)
+    cmd = "SELECT * FROM quiz"
+    a = cursor.execute(cmd).fetchall()
+    for i in a:
+        print(i)
+    cmd = "DROP TABLE {qlist}".format(qlist='q' + str(quizid))
+    cursor.execute(cmd)
+
+    db.commit()
+    db.close()
+
 
 def make_content(quiz_id):
     '''Creates table of quiz contents for each quiz'''

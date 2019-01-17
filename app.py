@@ -207,8 +207,14 @@ def view(quizid):
 def edit(quizid):
     print("editing story")
 
+    pubquiz = db.get_user_quizid("admin")
+    pubquiz = refactor(pubquiz)
     my_quiz = db.get_quizname(quizid)
-
+    if int(quizid) in pubquiz:
+        admin_name = db.get_quizname(quizid)
+        if len(session) != 0:
+            return render_template("editset.html", qname=admin_name, qid=quizid, info=db.get_content(quizid), logged=True, user=list(session.items())[0][0])
+        return render_template("viewset.html", info=db.get_content(quizid))
     if len(session) != 0:
         flashit = False
         #later add to see if you can actually access that quiz.
@@ -218,8 +224,7 @@ def edit(quizid):
             flash("Not your quiz, buddy...")
             return render_template("home.html", flash=True, category="epic_fail", logged = True,user=list(session.items())[0][0])
         # if d["recentcrt"]:
-        #     flashit, d["recentcrt"] = d["recentcrt"], False
-        #     flash("Successfully added!")
+        #     flashit, d["recentcrt"] = d["recentcrt"], False flash("Successfully added!")
         return render_template("editset.html", qname=my_quiz, qid=quizid, info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
     flash("Log in to edit your quiz.")
     return render_template("landing.html", flash = True, category = "epic_fail")
@@ -236,6 +241,12 @@ def delete(quizid):
     db.delete_term(quizid, term, defin)
     return redirect(url_for('edit', quizid = quizid))
 
+#@app.route("/delete/<quizid>")
+#def del_set(quizid):
+#    print("DELETE SET")
+#    print("QID = " + quizid)
+#    return redirect(url_for('view', quizid=quizid))
+    
 if __name__ == "__main__":
     app.debug = True
     app.run()
