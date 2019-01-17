@@ -274,6 +274,11 @@ def delete(quizid):
     db.delete_term(quizid, term, defin)
     return redirect(url_for('edit', quizid = quizid))
 
+@app.route("/test/<quizid>", methods=["GET", "POST"])
+def take_test(quizid):
+    return redirect(url_for("view", quizid = quizid))
+
+
 
 
 #@app.route("/delete/<quizid>")
