@@ -211,8 +211,19 @@ def delete_term(quiz_id, term, definition):
     db.commit()
     db.close()
 
+def get_quizname( quizid ):
+    ''' return quiz name given quiz id'''
+    db = sqlite3.connect(db_path)
+    cursor = db.cursor()
 
+    qid = quizid
+    cmd = "SELECT name FROm quiz WHERE id={q}".format(q=qid)
+    name = cursor.execute(cmd).fetchall()[0][0]
+    db.close()
+    
+    return name
 
+#get_quizname( 10 )
 # delete_term('48', 'aaa', 'bbb');
 # get_user_quiz('a')
 # get_content( 3 )

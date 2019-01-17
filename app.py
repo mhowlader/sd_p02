@@ -181,8 +181,8 @@ def view(quizid):
     print("VIEWING SOME STORY NOW")
     pubquiz = db.get_user_quizid("admin")
     pubquiz = refactor(pubquiz)
+    my_quiz = db.get_quizname(quizid)
     print(pubquiz)
-    print(quizid)
     print(int(quizid) in pubquiz)
     if int(quizid) in pubquiz:
         if len(session) != 0:
@@ -199,9 +199,13 @@ def view(quizid):
         if d["recentcrt"]:
             flashit, d["recentcrt"] = d["recentcrt"], False
             flash("Successfully added!")
-        return render_template("viewset.html", info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
+        return render_template("viewset.html", qid=my_quiz, info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
     flash("Log in to access your sets.")
     return render_template("landing.html", flash = True, category = "epic_fail")
+
+@app.route("/edit/<quizid>")
+def edit(quizid):
+    print("editing story")
 
 
 if __name__ == "__main__":
