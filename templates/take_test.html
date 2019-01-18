@@ -3,6 +3,38 @@
 
 {% block body %}
 
+<h1> Taking Quiz {{ qid }} </h1>
+
+
 <div class="container">
-    {% }
-    <div class="card">
+    <form action="/grade_test" method="POST">
+        {% set count = [1] %}
+        {% for def in deflist %}
+        <div class="card m-4">
+
+            <div class="card-body"
+            <p class=card-text"> {{ def }} </p>
+                <div class="form-group">
+                    <label for="sel1">Select one:</label>
+                    <select class="form-control" id="sel{{ count[0] }}" name="sellist{{ count[0] }}">
+                        {% for term in termlist %}
+                        <option>{{ term }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="hidden" name="def{{ count[0]}}" value={{ def }}>
+                    {% if count.append(count.pop() + 1) %}{% endif %} {# increment count by 1 #}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <input type="hidden" name="quizid" value={{ quizid }}>
+        <input type="hidden" name="count" value={{ count[0] }}>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+</div>
+
+
+{% endblock %}

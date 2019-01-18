@@ -1,4 +1,7 @@
 import os, csv, time, sqlite3, json
+from random import shuffle
+
+
 from urllib.request import Request, urlopen
 
 from flask import Flask, render_template, request, session, url_for, redirect, flash
@@ -276,7 +279,71 @@ def delete(quizid):
 
 @app.route("/test/<quizid>", methods=["GET", "POST"])
 def take_test(quizid):
-    return redirect(url_for("view", quizid = quizid))
+    # return redirect(url_for("view", quizid = quizid))
+    print("VIEWING SOME STORY NOW")
+    pubquiz = db.get_user_quizid("admin")
+    pubquiz = refactor(pubquiz)
+    my_quiz = db.get_quizname(quizid)
+    print("tooof")
+    dictlib=db.get_content(quizid)
+    doop = [x[1] for x in dictlib]
+    print(doop)
+    shuffle(doop)
+    print(doop)
+    if int(quizid) in pubquiz:
+        print("Yes")
+        if len(session) != 0:
+            lisdefs=[x[1] for x in db.get_content(quizid)]
+            shuffle(lisdefs)
+            return render_template("take_test.html", quizid=quizid, deflist=lisdefs, termlist=[x[0] for x in db.get_content(quizid)],logged=True, user=list(session.items())[0][0])
+        flash("Log in to take a test")
+        return render_template("landing.html", flash = True, category = "epic_fail")
+    print("no")
+    if len(session) != 0:
+        flashit = False
+        #later add to see if you can actually access that quiz.
+        user = list(session.items())[0][0]
+        myquizzes = refactor(db.get_user_quizid(user))
+        if int(quizid) not in myquizzes:
+            flash("Not your quiz, buddy...")
+            return render_template("home.html", flash=True, category="epic_fail", logged = True,user=list(session.items())[0][0])
+        if d["recentcrt"]:
+            flashit, d["recentcrt"] = d["recentcrt"], False
+            flash("Successfully added!")
+        lisdefs=[x[1] for x in db.get_content(quizid)]
+        shuffle(lisdefs)
+        print(lisdefs)
+        return render_template("take_test.html", qid=my_quiz, quizid=quizid, deflist=lisdefs, termlist=[x[0] for x in db.get_content(quizid)], logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
+    flash("Log in to access your sets.")
+    return render_template("landing.html", flash = True, category = "epic_fail")
+
+@app.route("/grade_test", methods=["POST"])
+def grade():
+    print ("ya")
+    quizid= request.form['quizid']
+    count=request.form['count']
+    icount=int(count) -1 # real count of sellist
+    print(icount)
+    print(quizid)
+    print("count" + count)
+    content=db.get_content(quizid)
+    qdict=dict(content)
+    cor = 0 # num correct
+
+    for i in range(1,icount + 1):
+        term = request.form['sellist' + str(i)]
+        print("term" + term)
+        if term in qdict:
+            print ("yaaa")
+            print (qdict[term])
+            print (request.form['def' + str(i)])
+            if request.form['def' + str(i)]  ==  qdict[term]:
+                print ("yaa")
+                cor= cor + 1
+
+    fins = str(cor) +  "/" + str(icount)
+
+    return render_template("grade.html", grad = fins )
 
 
 
