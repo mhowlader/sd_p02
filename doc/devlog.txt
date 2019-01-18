@@ -71,6 +71,11 @@ jasonT -- 2019-01-11 4:56
 - colored error/success on login
 - fixed/tweaked db file for login/register to be more modular
 ==============================================================
+mohtasimH -- 2019-01-12 9:45
+--------------------------------------------------------------
+- Implemented bootstrap for website
+- set design scheme of project.
+==============================================================
 
 jasonT -- 2019-01-14 13:56
 --------------------------------------------------------------
@@ -86,6 +91,10 @@ jasonT -- 2019-01-15 4:33
 - powerful view set that can be reused for editing, deleting, studying, etc.
 - added some css
 - add 2 db functions: get all quizzes from a user, and add a term into the db
+mohtasimH -- 2019-01-15 10:30
+--------------------------------------------------------------
+- Added cards and buttons for sets to go to term list
+==============================================================
 ==============================================================
 jackL -- 2019-01-15 13:49
 --------------------------------------------------------------
@@ -117,4 +126,8 @@ jasonT -- 2019-01-17 19:47
 jackL -- 2019-01-17 19:51
 --------------------------------------------------------------
 - Fixed formatting errors
+==============================================================
+mohtasimH -- 2019-01-17 19:50
+--------------------------------------------------------------
+- Added ability to take tests, submit them, and receive a grade on them
 ==============================================================
