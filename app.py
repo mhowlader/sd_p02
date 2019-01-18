@@ -313,11 +313,6 @@ def study(quizid):
     return render_template("landing.html", flash = True, category = "epic_fail")
 
 
-#@app.route("/delete/<quizid>")
-#def del_set(quizid):
-#    print("DELETE SET")
-#    print("QID = " + quizid)
-#    return redirect(url_for('view', quizid=quizid))
 
 if __name__ == "__main__":
     app.debug = True

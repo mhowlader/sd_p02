@@ -114,3 +114,7 @@ jasonT -- 2019-01-17 19:47
 - finished studying html page
 - updated the headers to display the title rather than the quizid
 ==============================================================
+jackL -- 2019-01-17 19:51
+--------------------------------------------------------------
+- Fixed formatting errors
+==============================================================
