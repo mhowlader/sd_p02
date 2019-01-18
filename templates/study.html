@@ -3,22 +3,76 @@
 {% block title %}Viewing {{ quizid }}{% endblock %}
 {% block body %}
     <h1>Viewing {{ quizid }}</h1>
+    {#    {{ info|tojson|safe }}#}
     <div class="container" style="padding:15px;">
-      <div class = "card card-body">
-	{{info}}
-      </div>
+        <div id="cardcont" class="card card-body flipping">
+
+
+        </div>
     </div>
+    <button id="back" class="btn btn-primary"> Previous Card</button>
+    <button id="next" class="btn btn-primary"> Next Card</button>
     <script>
-      var counter = 0;
-      
+
+        {#HOUSE KEEPING WITH FLASK PASSING TO JSON#}
+        var count = 0;
+        var things = {{info|tojson|safe}};
+        var terms = Object.keys(things);
+        var def = Object.values(things);
+        var length = terms.length;
+        var term_or_def = "term";
+
+        {#THIS IS FOR GETTING ELEMENTS#}
+        var cont = document.getElementById("cardcont");
+        var pbut = document.getElementById("back");
+        var nbut = document.getElementById("next");
+
+        var realmod = (a, n) => {
+            return ((a % n) + n) % n;
+        };
+
+        var updatevars = () => {
+            cont.setAttribute("style", "font-size:150px;");
+            count = realmod(count, length);
+            cont.innerHTML = terms[count];
+            term_or_def = "term";
+        }
+
+        pbut.addEventListener('click', function () {
+            count--;
+            updatevars();
+            {#console.log("-----");#}
+            {#console.log(terms);#}
+            {#console.log(count);#}
+            {#console.log(length);#}
+            {#console.log(realmod(count,length));#}
+
+        });
+        nbut.addEventListener('click', function () {
+            count++;
+            updatevars();
+            {#console.log("-----");#}
+            {#console.log(terms);#}
+            {#console.log(count);#}
+            {#console.log(length);#}
+            {#console.log(realmod(count,length));#}
+
+        });
+        cont.addEventListener('click', function () {
+            if (term_or_def == "term") {
+                cont.setAttribute("style", "font-size:50px");
+                cont.innerHTML = def[count];
+                term_or_def = "def"
+            }
+            else {
+                cont.setAttribute("style", "font-size:150px;");
+                cont.innerHTML = terms[count];
+                term_or_def = "term"
+            }
+        });
+        {#btnevent();#}
+        updatevars();
     </script>
+
 {% endblock %}
-
-
-    24
-
-I had a similar problem using Flask, but I did not have to resort to JSON. I just passed a list letters = ['a','b','c'] with render_template('show_entries.html', letters=letters), and set
-
-var letters = {{ letters|safe }}
-in my javascript code. Jinja2 replaced {{ letters }} with ['a','b','c'], which javascript interpreted as an array of strings.
 
