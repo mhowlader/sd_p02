@@ -201,7 +201,7 @@ def view(quizid):
             return render_template("home.html", flash=True, category="epic_fail", logged = True,user=list(session.items())[0][0])
         if d["recentcrt"]:
             flashit, d["recentcrt"] = d["recentcrt"], False
-            flash("Successfully added!")
+            flash("Successfully updated!")
         return render_template("viewset.html", quizname = db.get_quizname(quizid), info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
     flash("Log in to access your sets.")
     return render_template("landing.html", flash = True, category = "epic_fail")
