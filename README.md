@@ -7,7 +7,7 @@ Jason Tung - full stack dev
 
 **[Devlog](https://github.com/mhowlader/sd_p02/blob/master/doc/devlog.txt)**
 
-**[our video here](https://youtu.be/4QqZn-DpRao)**
+**[our video here](https://youtu.be/SL771tVkbDs)**
 
 ## Testlet
 
