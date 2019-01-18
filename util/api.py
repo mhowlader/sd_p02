@@ -7,11 +7,6 @@ with open("../keys/oxford.json") as file:
     oxford=json.load(file)
 
 
-appid=oxford["appid"]
-apikey=oxford["apikey"]
-
-print(appid)
-print(apikey)
 
 
 def get_defin(term):
@@ -19,15 +14,28 @@ def get_defin(term):
         URL
         https://developer.oxforddictionaries.com/documentation#!/Dictionary32entries/get_entries_source_lang_word_id
     '''
-    BASE_URL = "https://od-api.oxforddictionaries.com/api/v1"
-    lang = 'en'
-    word_id = term
     with open("../keys/oxford.json") as file:
         oxford=json.load(file)
-    appid=oxford["appid"]
-    apikey=oxford["apikey"]
+    # base_url = "https://od-api.oxforddictionaries.com/api/v1"
 
-get_defin('velocity')
+    language = 'en'
+    url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/"
+    url += term.lower()
+    print(url) 
+    try:
+        r = Request(url, headers = oxford)
+        raw = urlopen(r).read()
+        data = json.loads(raw)
+        #print(data)
+    except:
+        print("OOF")
+    definition = data['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['definitions'][0]
+    print(definition)
+    return definition
+
+
+
+#get_defin('velocity')
 
 trivia = "https://opentdb.com/api.php?amount=10"
 
