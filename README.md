@@ -1,5 +1,9 @@
 # team azrael <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Evelyn_De_Morgan_-_Angel_of_Death.jpg/220px-Evelyn_De_Morgan_-_Angel_of_Death.jpg" height="100">
-Mohtasim Howlader, Jack Lu, Jason Tung
+Mohtasim Howlader - pm
+
+Jack Lu - db work
+
+Jason Tung - full stack dev
 
 **[Devlog](https://github.com/mhowlader/sd_p02/blob/master/doc/devlog.txt)**
 
