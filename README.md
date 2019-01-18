@@ -131,3 +131,7 @@ python app.py
 8. go to localhost 127.0.0.1:5000 on any browser
 
    http://127.0.0.1:5000/
+   
+### Known Bugs:
+- Grading does not seem to work for when the definition to a term is longer than one word.
+
