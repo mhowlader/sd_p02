@@ -216,8 +216,8 @@ def edit(quizid):
     if int(quizid) in pubquiz:
         admin_name = db.get_quizname(quizid)
         if len(session) != 0:
-            return render_template("editset.html", quizname = db.get_quizname(quizid), qname=admin_name, qid=quizid, info=db.get_content(quizid), logged=True, user=list(session.items())[0][0])
-        return render_template("viewset.html",  quizname = db.get_quizname(quizid), qid=my_quiz,info=db.get_content(quizid))
+            return render_template("editset.html",lenset = len(db.get_content(quizid)), quizname = db.get_quizname(quizid), qname=admin_name, qid=quizid, info=dbtodict(db.get_content(quizid)), logged=True, user=list(session.items())[0][0])
+        return render_template("viewset.html",  quizname = db.get_quizname(quizid), qid=my_quiz,info=dbtodict(db.get_content(quizid)))
     if len(session) != 0:
         flashit = False
         #later add to see if you can actually access that quiz.
@@ -228,41 +228,42 @@ def edit(quizid):
             return render_template("home.html", flash=True, category="epic_fail", logged = True,user=list(session.items())[0][0])
         # if d["recentcrt"]:
         #     flashit, d["recentcrt"] = d["recentcrt"], False flash("Successfully added!")
-        return render_template("editset.html",quizname = db.get_quizname(quizid), qname=my_quiz, qid=quizid, info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
+        return render_template("editset.html",lenset = len(db.get_content(quizid)),quizname = db.get_quizname(quizid), qname=my_quiz, qid=quizid, info=dbtodict(db.get_content(quizid)), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
     flash("Log in to edit your quiz.")
     return render_template("landing.html", flash = True, category = "epic_fail")
 
 @app.route("/edit_auth", methods=['GET', 'POST'])
 def edit_auth():
-    try:
-        print("~~~~~~~~~~~~~~~~~Editing A SET~~~~~~~~~~~")
-        # print(list(session.items()))
-        user = list(session.items())[0][0]
-        # print(user)
-        # print(request)
-        # print(request.form)
-        title = request.form["title"]
-        count = request.form["count"]
-        terms = []
-        defs = []
-        # print(title)
-        # print(count)
-        quizid = db.make_quiz(title, user)
-        print("QUIZID: " + str(quizid))
-        for x in range(int(count)):
-            term = request.form["term" + str(x)]
-            definition = request.form["def" + str(x)]
-            db.add_term(quizid, term, definition)
-        d["recentcrt"] = True
-        d["quizid"] = quizid
-        print("REDIRECTING YOIU TO VIEW QUID ID :" + str(quizid))
-        print("VIEW_STORY IS " + str(d["quizid"]))
-        return redirect(url_for("view", quizid = quizid))
-    except:
-        if len(session) != 0:
-            flash("Something bad happened...")
-            return render_template("create.html", logged=True, category = "epic_fail", flash = True,user=list(session.items())[0][0])
-        return render_template("landing.html")
+    # try:
+    print("~~~~~~~~~~~~~~~~~Editing A SET~~~~~~~~~~~")
+    # print(list(session.items()))
+    user = list(session.items())[0][0]
+    # print(user)
+    # print(request)
+    # print(request.form)
+    title = request.form["title"]
+    count = request.form["count"]
+    print(count)
+    terms = []
+    defs = []
+    # print(title)
+    # print(count)
+    quizid = db.make_quiz(title, user)
+    print("QUIZID: " + str(quizid))
+    for x in range(int(count)):
+        term = request.form["term" + str(x)]
+        definition = request.form["def" + str(x)]
+        db.add_term(quizid, term, definition)
+    d["recentcrt"] = True
+    d["quizid"] = quizid
+    print("REDIRECTING YOIU TO VIEW QUID ID :" + str(quizid))
+    print("VIEW_STORY IS " + str(d["quizid"]))
+    return redirect(url_for("view", quizid = quizid))
+    # except:
+    #     if len(session) != 0:
+    #         flash("Something bad happened...")
+    #         return render_template("create.html", logged=True, category = "epic_fail", flash = True,user=list(session.items())[0][0])
+    #     return render_template("landing.html")
 
 
 @app.route("/delete/<quizid>", methods=["POST"])

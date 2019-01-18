@@ -33,12 +33,12 @@ var btnevent = () => {
         var def = makecell("def");
         newrow.appendChild(term);
         newrow.appendChild(def);
-        console.log("------");
-        console.log(term);
+        //console.log("------");
+        //console.log(term);
         container.appendChild(newrow);
-        console.log(count);
+        //console.log(count);
         count = count + 1;
-        console.log(count);
+        //console.log(count);
         countbox.setAttribute("value",count);
     })
 };
