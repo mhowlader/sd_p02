@@ -131,3 +131,9 @@ mohtasimH -- 2019-01-17 19:50
 --------------------------------------------------------------
 - Added ability to take tests, submit them, and receive a grade on them
 ==============================================================
+jackL -- 2019-01-17 19:51
+--------------------------------------------------------------
+- Updated design doc:
+- Did not implement search or API
+- Users can see their own sets and public sets
+==============================================================
