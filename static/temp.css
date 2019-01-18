@@ -10,22 +10,22 @@
 }
 
 .epic_fail {
-      color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
 }
 
 .epic_win {
     color: #155724;
-  background-color: #d4edda;
-  border-color: #c3e6cb;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
 
 }
 
 .epic_logout {
-   color: #004085;
-  background-color: #cce5ff;
-  border-color: #b8daff;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
 }
 
 #encapsule {
@@ -57,20 +57,20 @@ button {
     overflow: hidden;
     outline: none;
     padding: 10px;
-    border-color:transparent;
-    outline-color:transparent;
+    border-color: transparent;
+    outline-color: transparent;
 }
 
-.button:hover{
-    border-color:transparent;
-    outline-color:transparent;
-    background-color:#35e879;
+button:hover {
+    border-color: transparent;
+    outline-color: transparent;
+    background-color: #35e879;
 }
 
-.btn:hover{
-    border-color:transparent;
-    outline-color:transparent;
-    background-color:#35e879;
+.btn:hover {
+    border-color: transparent;
+    outline-color: transparent;
+    background-color: #35e879;
 }
 
 .footer {
@@ -81,30 +81,57 @@ button {
     padding-top: 20px;
 }
 
-.pad{
-    padding:25px;
+.pad {
+    padding: 25px;
 }
 
-.spad{
-    padding:10px;
+.spad {
+    padding: 10px;
 }
 
-.mpad{
-    padding:15px;
+.mpad {
+    padding: 15px;
 }
 
 .block {
-    border-color:transparent;
-    outline-color:transparent;
+    border-color: transparent;
+    outline-color: transparent;
     background-color: #007bff;
-  display: block;
-  width: 100%;
-  cursor: pointer;
-  text-align: center;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
 }
 
-.block:hover{
-    border-color:transparent;
-    outline-color:transparent;
-    background-color:#35e879;
+.block:hover {
+    border-color: transparent;
+    outline-color: transparent;
+    background-color: #35e879;
+}
+
+.flipping {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 150px;
+    height:500px;
+    -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
+    /*padding-top: 300px;*/
+}
+
+.flipping:hover {
+    background-color: #007bff;
+    outline-color: transparent;
+    color: white;
+    cursor: pointer;
+    /*padding-top: 300px;*/
 }

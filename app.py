@@ -172,7 +172,7 @@ def baseview():
     print("hello dude")
     print(user_sets)
     if len(session) != 0:
-        return render_template("viewold.html", quizlist = user_sets.items(), logged=True, user=user)
+        return render_template("viewold.html",quizlist = user_sets.items(), logged=True, user=user)
     flash("Log in to access your sets.")
     return render_template("landing.html",category = "epic_fail", flash = True)
 
@@ -189,8 +189,8 @@ def view(quizid):
     print(int(quizid) in pubquiz)
     if int(quizid) in pubquiz:
         if len(session) != 0:
-            return render_template("viewset.html", info=db.get_content(quizid), logged=True, user=list(session.items())[0][0])
-        return render_template("viewset.html", info=db.get_content(quizid))
+            return render_template("viewset.html", quizname = db.get_quizname(quizid), info=db.get_content(quizid), logged=True, user=list(session.items())[0][0])
+        return render_template("viewset.html", quizname = db.get_quizname(quizid), info=db.get_content(quizid))
     if len(session) != 0:
         flashit = False
         #later add to see if you can actually access that quiz.
@@ -202,7 +202,7 @@ def view(quizid):
         if d["recentcrt"]:
             flashit, d["recentcrt"] = d["recentcrt"], False
             flash("Successfully added!")
-        return render_template("viewset.html", qid=my_quiz, info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
+        return render_template("viewset.html", quizname = db.get_quizname(quizid), info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
     flash("Log in to access your sets.")
     return render_template("landing.html", flash = True, category = "epic_fail")
 
@@ -216,8 +216,8 @@ def edit(quizid):
     if int(quizid) in pubquiz:
         admin_name = db.get_quizname(quizid)
         if len(session) != 0:
-            return render_template("editset.html", qname=admin_name, qid=quizid, info=db.get_content(quizid), logged=True, user=list(session.items())[0][0])
-        return render_template("viewset.html", info=db.get_content(quizid))
+            return render_template("editset.html", quizname = db.get_quizname(quizid), qname=admin_name, qid=quizid, info=db.get_content(quizid), logged=True, user=list(session.items())[0][0])
+        return render_template("viewset.html",  quizname = db.get_quizname(quizid), qid=my_quiz,info=db.get_content(quizid))
     if len(session) != 0:
         flashit = False
         #later add to see if you can actually access that quiz.
@@ -228,7 +228,7 @@ def edit(quizid):
             return render_template("home.html", flash=True, category="epic_fail", logged = True,user=list(session.items())[0][0])
         # if d["recentcrt"]:
         #     flashit, d["recentcrt"] = d["recentcrt"], False flash("Successfully added!")
-        return render_template("editset.html", qname=my_quiz, qid=quizid, info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
+        return render_template("editset.html",quizname = db.get_quizname(quizid), qname=my_quiz, qid=quizid, info=db.get_content(quizid), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
     flash("Log in to edit your quiz.")
     return render_template("landing.html", flash = True, category = "epic_fail")
 
@@ -346,14 +346,40 @@ def grade():
     return render_template("grade.html", grad = fins )
 
 
+def dbtodict(info):
+    dic = dict()
+    for x in info:
+        dic[str(x[0])] = str(x[1])
+    return dic
+
+@app.route('/study/<quizid>')
+def study(quizid):
+    print("STUDY SOME STORY NOW")
+    pubquiz = db.get_user_quizid("admin")
+    pubquiz = refactor(pubquiz)
+    my_quiz = db.get_quizname(quizid)
+    print(pubquiz)
+    print(int(quizid) in pubquiz)
+    if int(quizid) in pubquiz:
+        if len(session) != 0:
+            return render_template("study.html",quizname = db.get_quizname(quizid),  qid=my_quiz,info=dbtodict(db.get_content(quizid)), logged=True, user=list(session.items())[0][0])
+        return render_template("study.html",quizname = db.get_quizname(quizid),  qid=my_quiz,info=dbtodict(db.get_content(quizid)))
+    if len(session) != 0:
+        flashit = False
+        #later add to see if you can actually access that quiz.
+        user = list(session.items())[0][0]
+        myquizzes = refactor(db.get_user_quizid(user))
+        if int(quizid) not in myquizzes:
+            flash("Not your quiz, buddy...")
+            return render_template("home.html", flash=True, category="epic_fail", logged = True,user=list(session.items())[0][0])
+        if d["recentcrt"]:
+            flashit, d["recentcrt"] = d["recentcrt"], False
+            flash("Successfully added!")
+        return render_template("study.html",quizname = db.get_quizname(quizid), qid=my_quiz, info=dbtodict(db.get_content(quizid)), logged=True, category="epic_win", flash=flashit,user=list(session.items())[0][0])
+    flash("Log in to access your sets.")
+    return render_template("landing.html", flash = True, category = "epic_fail")
 
 
-
-#@app.route("/delete/<quizid>")
-#def del_set(quizid):
-#    print("DELETE SET")
-#    print("QID = " + quizid)
-#    return redirect(url_for('view', quizid=quizid))
 
 if __name__ == "__main__":
     app.debug = True

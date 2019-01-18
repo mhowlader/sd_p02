@@ -83,6 +83,7 @@ jasonT -- 2019-01-15 4:33
 --------------------------------------------------------------
 - finished set creation
 - finished viewing sets
+- powerful view set that can be reused for editing, deleting, studying, etc.
 - added some css
 - add 2 db functions: get all quizzes from a user, and add a term into the db
 ==============================================================
@@ -105,4 +106,15 @@ jackL -- 2019-01-16 14:01
 mohtasimH -- 2019-01-17 12:30
 --------------------------------------------------------------
 - Added edit sets functionality
+==============================================================
+jasonT -- 2019-01-17 19:47
+--------------------------------------------------------------
+- finished study routing
+- finished studying js
+- finished studying html page
+- updated the headers to display the title rather than the quizid
+==============================================================
+jackL -- 2019-01-17 19:51
+--------------------------------------------------------------
+- Fixed formatting errors
 ==============================================================
